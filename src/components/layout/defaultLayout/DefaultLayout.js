@@ -3,7 +3,7 @@ import React from "react";
 
 // Components
 import { Header } from "components/core";
-import { AsideMenu } from 'components/shared'
+import { AsideMenu } from "components/shared";
 
 export const DefaultLayout = ({ children }) => {
   return (
@@ -12,7 +12,7 @@ export const DefaultLayout = ({ children }) => {
       <main className="container">
         <div className="row gy-3">
           <AsideMenu />
-          {children}
+          <div className="col">{children}</div>
         </div>
       </main>
     </>
