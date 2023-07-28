@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { SpinnerLoading } from "components/core";
 
 // Services
-import { getAllCategories } from "services/product";
+import { getAllCategories } from "services/categories";
 
 // Utils
 import { getURLParams } from "utils/utils";
