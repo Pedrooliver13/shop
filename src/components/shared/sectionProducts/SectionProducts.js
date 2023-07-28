@@ -5,14 +5,14 @@ import { useState, useEffect } from "react";
 import { Card, SpinnerLoading } from "components/core";
 
 // Services
-import { getAllProducts } from "services/product";
+import { getProducts } from "services/product";
 
 export const SectionProducts = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getAllProducts().then((response) => {
+    getProducts().then((response) => {
       setIsLoading(true);
 
       if (!response) {
@@ -29,7 +29,7 @@ export const SectionProducts = () => {
       <h3>Products</h3>
       <div className="row gy-3">
         {products.map((product) => (
-          <Card key={product.id} />
+          <Card key={product.id} product={product} />
         ))}
       </div>
     </>

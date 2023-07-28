@@ -1,6 +1,9 @@
 // Packages
 import React from "react";
 
+// Components
+import { CardProgressBar } from "components/core/card/components/CardProgressBar";
+
 export const Card = () => {
   return (
     <div className="col-lg-6">
@@ -14,14 +17,7 @@ export const Card = () => {
           <span className="float-end badge text-bg-secondary">smartphones</span>
           <h5 className="card-title">Microsoft Surface Laptop 4</h5>
           <h6 className="card-subtitle mb-2 text-body-secondary">Apple</h6>
-          <div className="progress">
-            <div
-              className="progress-bar bg-warning text-dark text-end"
-              style={{ width: "80%" }}
-            >
-              4.69
-            </div>
-          </div>
+          <CardProgressBar />
           An apple mobile which is nothing like apple
           <div>
             <div
