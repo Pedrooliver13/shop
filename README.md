@@ -16,6 +16,10 @@ $ npm install ou yarn install
 $ npm start ou yarn start
 
 ```
+## :information_source: Test 
+
+- [Codepen](https://codesandbox.io/s/react-challenge-shop-forked-dvx929?file=/src/App.js:278-315)
+
 ## :rocket: Technologies
 
 -  [ReactJS](https://reactjs.org/)
