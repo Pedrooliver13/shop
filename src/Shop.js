@@ -2,12 +2,14 @@
 import { Pagination } from "components/core";
 import { DefaultLayout } from "components/layout";
 import { SectionProducts } from "components/shared";
+import { ProductContextProvider } from "hooks/contexts/useProductContext";
 
 export function Shop() {
   return (
-    <DefaultLayout>
-      <SectionProducts />
-      <Pagination />
-    </DefaultLayout>
+    <ProductContextProvider>
+      <DefaultLayout>
+        <SectionProducts />
+      </DefaultLayout>
+    </ProductContextProvider>
   );
 }

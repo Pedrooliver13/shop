@@ -1,65 +1,47 @@
-// Packages
-import { useState, useEffect } from "react";
-
 // Components
 import { SpinnerLoading } from "components/core";
 
-// Services
-import { getAllCategories } from "services/categories";
-
-// Utils
-import { getURLParams } from "utils/utils";
+// Hooks
+import { useGetCategories } from "hooks/useGetCategories";
+import { useProductContext } from "hooks/contexts/useProductContext";
 
 export const AsideMenu = () => {
-  const location = getURLParams("products");
-  const [categories, setCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    getAllCategories().then((response) => {
-      setIsLoading(true);
-
-      if (!response) {
-        return;
-      }
-
-      setCategories(response);
-      setIsLoading(false);
-    });
-  }, []);
+  const { categories, isLoading } = useGetCategories();
+  const { categoryParamsValue, handleChangeCategory } = useProductContext();
 
   return (
     <div className="col-sm-4 col-lg-3 col-xl-2">
       <h3>Categories</h3>
-      {!isLoading ? (
+      {isLoading ? (
+        <SpinnerLoading />
+      ) : (
         <ul className="list-group">
-          <li className={`list-group-item ${!location ? "active" : ""}`}>
-            <a className="text-decoration-none text-reset" href={`/`}>
-              Todas
-            </a>
+          <li
+            onClick={() => handleChangeCategory()}
+            style={{ cursor: "pointer" }}
+            className={`list-group-item ${
+              !categoryParamsValue ? "active" : ""
+            }`}
+          >
+            Todas
           </li>
           {categories?.map((category) => {
-            const isCategoryActive = location === category;
+            const isCategoryActive = categoryParamsValue === category;
 
             return (
               <li
                 key={category}
-                className={`list-group-item ${
+                onClick={() => handleChangeCategory(category)}
+                style={{ cursor: "pointer" }}
+                className={`list-group-item text-capitalize ${
                   isCategoryActive ? "active" : ""
                 }`}
               >
-                <a
-                  className="text-decoration-none text-reset"
-                  href={`?products=${category}`}
-                >
-                  {category}
-                </a>
+                {category}
               </li>
             );
           })}
         </ul>
-      ) : (
-        <SpinnerLoading />
       )}
     </div>
   );

@@ -1,5 +1,5 @@
-// Packages
-import React from "react";
+// Components
+import { SearchForm } from "components/core/header/components/SearchForm";
 
 export const Header = () => {
   return (
@@ -8,15 +8,7 @@ export const Header = () => {
         <a href="/" className="navbar-brand">
           Shop
         </a>
-        <form className="d-flex">
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button className="btn btn-outline-success">Search</button>
-        </form>
+        <SearchForm />
       </div>
     </nav>
   );

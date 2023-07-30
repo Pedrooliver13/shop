@@ -1,39 +1,29 @@
-// Packages
-import { useState, useEffect } from "react";
-
 // Components
-import { Card, SpinnerLoading } from "components/core";
+import { Card, Pagination, SpinnerLoading } from "components/core";
 
-// Services
-import { getProducts } from "services/product";
+// Hooks
+import { useGetProducts } from "hooks/useGetProducts";
 
 export const SectionProducts = () => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { products, isLoading } = useGetProducts();
 
-  useEffect(() => {
-    getProducts().then((response) => {
-      setIsLoading(true);
-
-      if (!response) {
-        return;
-      }
-
-      setProducts(response.products);
-      setIsLoading(false);
-    });
-  }, []);
-
-  return !isLoading ? (
+  return (
     <>
       <h3>Products</h3>
-      <div className="row gy-3">
-        {products.map((product) => (
-          <Card key={product.id} product={product} />
-        ))}
-      </div>
+      {isLoading ? (
+        <SpinnerLoading />
+      ) : (
+        <>
+          <div className="row gy-3">
+            {products?.map((product) => (
+              <div className="col-lg-6" key={product?.id}>
+                <Card product={product} />
+              </div>
+            ))}
+          </div>
+          <Pagination />
+        </>
+      )}
     </>
-  ) : (
-    <SpinnerLoading />
   );
 };
